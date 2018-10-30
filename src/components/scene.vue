@@ -12,7 +12,7 @@
                     <v-flex xs6 offset-xs1>
              <v-select attach :items="items" label="類別" offset-y light v-model="scene[0].type" max-height="100"></v-select>
              </v-flex>
-           <v-flex xs6 offset-xs1 v-if="scene[0].type=='管路/設備儀表照片'||scene[0].type=='文字檔案'">
+           <v-flex xs6 offset-xs1 v-if="scene[0].type=='管路/設備儀表照片'||scene[0].type=='文字圖案'">
              <p>內文<upload-button title="檔案上傳" name="file" accept=".pdf" :selectedCallback="Upload"></upload-button></p>
              <p v-if="scene[0]['file']!==null">{{scene[0]['file'].name}}</p>
                 </v-flex>
@@ -53,7 +53,7 @@
                  <v-flex xs6 offset-xs1>
              <v-select attach :items="items" label="類別" offset-y light v-model="scene[0].type" max-height="100"></v-select>
              </v-flex>
-                <v-flex xs6 offset-xs1 v-if="scene[0].type=='管路/設備儀表照片'||scene[0].type=='文字檔案'">
+                <v-flex xs6 offset-xs1 v-if="scene[0].type=='管路/設備儀表照片'||scene[0].type=='文字圖案'">
              <p>內文<upload-button title="檔案上傳" name="file" accept=".pdf" :selectedCallback="Upload"></upload-button></p>
              <p v-if="scene[0]['file']!==null">{{scene[0]['file'].name}}</p>
                 </v-flex>
@@ -129,11 +129,11 @@ data () {
           { text: '類別', value: 'type',sortable: false, },
           { text: '修改日期', value: 'date' ,sortable: false,},
         ],
-        items:['管路/設備儀表照片','影片','文字檔案'],
+        items:['管路/設備儀表照片','影片','文字圖案'],
         scenes: [
           {id:'1',title:'123',type:'管路/設備儀表照片',date:'5678'},
           {id:'2',title:'123143',type:'影片',date:'4567'},
-          {id:'3',title:'gh324',type:'文字檔案',date:'456'}
+          {id:'3',title:'gh324',type:'文字圖案',date:'456'}
         ],
         scene:[
             {

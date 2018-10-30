@@ -47,7 +47,7 @@ export default {
         return client.put('/article/'+id, data, config)
     },
     getProduct:function(id){
-        return client.get('/product/'+id)
+        return client.get('/product/product/'+id)
     },
     getAllProduct:function(){
         return client.get('./product')
@@ -107,7 +107,6 @@ export default {
         return client.get('./account',{headers:{'Auth': token}})
     },
     deleteAccount:function(token,ids){
-        console.log(ids)
         let config = {
             headers:{
                 'Auth': token,
@@ -122,6 +121,32 @@ export default {
         return client.put('/account/'+id,data,{headers:{'Auth':token}})
     },
     getAllApplyAccount:function(token){
-        return client.get('/accountapply',{headers:{'Auth':token}})
+        return client.get('/accountcheck',{headers:{'Auth':token}})
+    },
+    deleteApplyAccount(token,ids){
+        console.log(ids)
+        let config = {
+            headers:{
+                'Auth': token,
+            },
+            data:{
+                'ids':ids
+            }
+        }
+        return client.delete('accountcheck',config);
+    },
+    memberPass: function(token,ids){
+        console.log(ids)
+        return client.put('/accountcheck',ids,{headers:{'Auth':token}})
+    },
+    getAsk:function(token){
+        return client.get('/inquiry',{headers:{'Auth':token}})
+    },
+    createOrder:function(token,data){
+        return client.post('/order/create',data,{headers:{'Auth':token}})
+    },
+    getAllOrder:function(token){
+        console.log(token)
+        return client.get('/order/all',{headers:{'Auth':token}})
     }
 }

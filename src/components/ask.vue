@@ -3,7 +3,7 @@
         <v-layout row>
     <v-card-text align="center"><font size="4"><b>詢價單</b></font></v-card-text>
     <v-dialog v-model="dialog" width="600"  color="#FFFFFF">
-            <v-btn  slot="activator" @click="create">基本設定</v-btn>
+            <v-btn  slot="activator" >基本設定</v-btn>
             <v-card color="white">
                 <br>
                 <v-flex xs6 offset-xs1>
@@ -32,7 +32,7 @@
                 </v-flex>
                 <br>
                 <v-flex offset-xs4>
-                <v-btn @click.native="dialog2=false" @click="deleteConfirm">確認</v-btn>
+                <v-btn @click.native="dialog2=false" @click="deleteConfirm()">確認</v-btn>
                 </v-flex>
                 <br>
             </v-card>
@@ -84,25 +84,33 @@
                         <b><p>詳細資料</p></b>
                         </v-flex>
                         </font>
-                    <v-flex v-bind:key=n v-for="n in props.item.products.length">
-                        <br>
-                        <v-layout row> 
-                            <v-flex xs3 offset-xs1>
-                                <p>商品名稱:{{props.item.products[n-1].name}}</p>
-                            </v-flex>
-                                <v-layout column="">
-                                <v-flex v-bind:key=i v-for="i in props.item.products[n-1].spec.length" xs3 offset-xs1>
-                                    <p>規格{{i}}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{props.item.products[n-1].spec[i-1]}}:{{props.item.products[n-1].specOption[i-1]}}</p>
-                                </v-flex>
-                                </v-layout>
-                                <v-flex xs3 offset-xs1>
-                                <p>數量:{{props.item.products[n-1].number}}</p>
-                                </v-flex>
-                            </v-layout>
-                            <v-flex xs10 offset-xs1>
-                            <v-divider></v-divider>
-                            </v-flex>
-                    </v-flex>
+                        <v-flex xs10 offset-xs1>
+                    <v-data-table
+            color= "white"
+            :headers="detailHeaders"
+            :items="props.item.detail"
+            class="elevation-1"
+            hide-actions
+            light
+            >
+    <template slot="headerCell" slot-scope="props">
+      <v-tooltip bottom>
+        <span slot="activator">
+          {{ props.header.text }}
+        </span>
+        <span>
+          {{ props.header.text }}
+        </span>
+      </v-tooltip>
+    </template>
+    <template slot="items" slot-scope="props">
+      <td class="text-xs-center"> {{props.item.name}} </td>
+      <td class="text-xs-center"><v-card-media v-bind:src="props.item.picture"></v-card-media></td>
+      <td class="text-xs-center"><v-flex v-bind:key=n v-for="n in props.item.spec.length"><p v-if="props.item.spec[n-1]!== null">{{props.item.spec[n-1]}}:{{props.item.specOption[n-1]}}</p></v-flex></td>
+      <td class="text-xs-center">{{props.item.amount}}</td>
+    </template>
+  </v-data-table>
+                        </v-flex>
                      <v-flex xs6 offset-xs1>
                          <br>
                     <p>聯絡資訊:</p>  
@@ -110,7 +118,7 @@
                     <p>連絡電話:&nbsp;{{props.item.phone}}</p>
                     <p>E-mail:&nbsp;{{props.item.email}}</p>
                     <p>備註留言:</p>
-                    <v-textarea flat v-model="props.item.detail" height="200">
+                    <v-textarea flat v-model="props.item.message" height="200">
                     </v-textarea>
                 </v-flex>
                 </font>
@@ -123,6 +131,8 @@
 </template>
 
 <script>
+import api from '../store/api'
+
 export default {
     data(){
         return{
@@ -131,6 +141,10 @@ export default {
             recieveEmail:'',
             search: '',
             selected: [],
+            detailHeaders:[{text: '商品名稱',align: 'center',sortable: false,value: 'name'},
+            {text: '商品圖片',align: 'center',sortable: false,value: 'picture'},
+            {text: '規格',align: 'center',sortable: false,value: 'detail'},
+            {text: '數量',align: 'center',sortable: false,value: 'number'},],
         headers: [
           {
             text: '編號',
@@ -155,7 +169,24 @@ export default {
     methods:{
         save(){
 
-        }
+        },
+        deleteConfirm(){
+
+        },
+    },
+    beforeMount(){
+        let self = this
+        let token = localStorage.getItem('token')
+        api.getAsk(token).then(res=>{
+            console.log(res)
+            self.asks = res.data.inquirys
+            for(var i=0;i< self.asks.length;i++){
+                self.asks[i].detail = JSON.parse(self.asks[i].detail)
+            }
+            //console.log(self.asks)
+        }).catch(error=>{
+            alert(error)
+        })
     }
 }
 </script>

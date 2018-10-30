@@ -148,7 +148,7 @@ data () {
     methods:{
         create(){
           this.relation[0].title='';
-          this.relations[0].type='';
+          this.relation[0].type='';
           this.relation[0].context='';
         },
         createConfirm(){

@@ -18,7 +18,7 @@
                 <v-radio label="女" value="女"></v-radio>
             </v-radio-group>
             <v-text-field v-model="member[0].birthday" label="生日" class="input-group--focused"></v-text-field>
-            <v-text-field v-model="member[0].email" label="e-mail" class="input-group--focused"></v-text-field>
+            <v-text-field v-model="member[0].email" label="*e-mail" class="input-group--focused"></v-text-field>
             <v-text-field v-model="member[0].phone" label="*連絡電話" class="input-group--focused"></v-text-field>
             <v-text-field v-model="member[0].fax" label="*傳真" class="input-group--focused"></v-text-field>
             <v-text-field v-model="member[0].line" label="line" class="input-group--focused"></v-text-field>
@@ -61,7 +61,7 @@
                 <v-radio label="女" value="女"></v-radio>
             </v-radio-group>
             <v-text-field v-model="member[0].birthday" label="生日" class="input-group--focused"></v-text-field>
-            <v-text-field v-model="member[0].email" label="e-mail" class="input-group--focused"></v-text-field>
+            <v-text-field v-model="member[0].email" label="*e-mail" class="input-group--focused"></v-text-field>
             <v-text-field v-model="member[0].phone" label="*連絡電話" class="input-group--focused"></v-text-field>
             <v-text-field v-model="member[0].fax" label="*傳真" class="input-group--focused"></v-text-field>
             <v-text-field v-model="member[0].line" label="line" class="input-group--focused"></v-text-field>
@@ -165,7 +165,7 @@ data () {
         },
         createConfirm(){
           let list = ['name','sex','company','account','password','birthday','email','phone','line','qq','fax','skype','level']
-          let checkList = ['name','sex','company','account','password','phone','fax']
+          let checkList = ['name','sex','company','account','password','phone','fax','email']
           for(var i of checkList){
             if(this.member[0][i] == ''){
               alert('有必填選項未填')
@@ -297,7 +297,6 @@ data () {
             self.members[i].level = '重要客戶'
           }
           if(self.members[i].level == '0'){
-            console.log(self.members[i].level)
             self.members[i].level = '一般客戶'
           }
         }
