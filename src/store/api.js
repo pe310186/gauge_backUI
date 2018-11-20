@@ -1,7 +1,8 @@
 import axios from 'axios'
 
 let client = axios.create({
-    baseURL: 'http://210.61.46.101:8787',
+    baseURL:   'http://localhost:3000',
+    //baseURL: 'http://210.61.46.101:8787',
     timeout: 60000
 })
 
@@ -121,10 +122,9 @@ export default {
         return client.put('/account/'+id,data,{headers:{'Auth':token}})
     },
     getAllApplyAccount:function(token){
-        return client.get('/accountcheck',{headers:{'Auth':token}})
+        return client.get('/checkaccount',{headers:{'Auth':token}})
     },
     deleteApplyAccount(token,ids){
-        console.log(ids)
         let config = {
             headers:{
                 'Auth': token,
@@ -133,11 +133,11 @@ export default {
                 'ids':ids
             }
         }
-        return client.delete('accountcheck',config);
+        return client.delete('checkaccount',config);
     },
     memberPass: function(token,ids){
         console.log(ids)
-        return client.put('/accountcheck',ids,{headers:{'Auth':token}})
+        return client.put('/checkaccount',ids,{headers:{'Auth':token}})
     },
     getAsk:function(token){
         return client.get('/inquiry',{headers:{'Auth':token}})
@@ -146,7 +146,40 @@ export default {
         return client.post('/order/create',data,{headers:{'Auth':token}})
     },
     getAllOrder:function(token){
-        console.log(token)
         return client.get('/order/all',{headers:{'Auth':token}})
+    },
+    deleteOrder:function(token,ids){
+        let config = {
+            headers:{
+                'Auth': token,
+            },
+            data:{
+                'ids':ids
+            }
+        }
+        return client.delete('/order',config)
+    },
+    updateOrder:function(token,id,data){
+        return client.put('/order/'+ id,data,{headers:{'Auth':token}})
+    },
+    getMailSetting(token,type){
+        return client.get('/mail/'+type,{headers:{"Auth":token}})
+    },
+    setMailSetting(token,type,data){
+      return client.put('/mail/'+type,data,{headers:{"Auth":token}})  
+    },
+    deleteAsk(token,ids){
+        let config = {
+            headers:{
+                'Auth': token,
+            },
+            data:{
+                'ids':ids
+            }
+        }
+        return client.delete('/inquiry',config)
+    },
+    sendNewsletter(token,type,data){
+        return client.post('/newsletter/'+type,data,{headers:{"Auth":token}})
     }
 }

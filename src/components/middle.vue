@@ -71,6 +71,9 @@
         <v-card v-else-if="path=='membercheck'">
             <membercheck></membercheck>
         </v-card>
+        <v-card v-else-if="path=='newsletter'">
+            <newsletter></newsletter>
+        </v-card>
     </v-container>
 </template>
 

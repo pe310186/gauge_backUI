@@ -20,6 +20,7 @@ import Order from './order.vue'
 import Member from './member.vue'
 import UploadButton from './UploadButton.vue'
 import Membercheck from './membercheck.vue'
+import Newsletter from './newsletter.vue'
 
 export default{
     StartPage: StartPage,
@@ -43,5 +44,6 @@ export default{
     Order: Order,
     Member: Member,
     UploadButton: UploadButton,
-    Membercheck: Membercheck
+    Membercheck: Membercheck,
+    Newsletter: Newsletter
 }

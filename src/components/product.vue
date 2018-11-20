@@ -309,6 +309,7 @@ data () {
                 window.location.reload();
             }).catch(error=>{
                 alert(error)
+                window.location.reload();
             })   
         },
         update(){
@@ -337,8 +338,6 @@ data () {
                 this.product[0][i] = this.selected[0][i]
                 }
             }
-            console.log( this.product[0]['spec'])
-            console.log(this.product[0]['specOption'])
         },
         updateConfirm(){
             let formdata = new FormData()
@@ -367,6 +366,7 @@ data () {
                 window.location.reload();
             }).catch(error=>{
                 alert(error)
+                window.location.reload();
             }) 
         },
         deleteConfirm(){
@@ -380,6 +380,7 @@ data () {
                 window.location.reload();
             }).catch(error=>{
                 alert(error)
+                window.location.reload();
             })
         },
         createSelected(){
@@ -436,6 +437,7 @@ data () {
             }
         }).catch(error=>{
             alert(error)
+            window.location.reload();
         })
     }
 }

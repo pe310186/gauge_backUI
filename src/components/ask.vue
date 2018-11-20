@@ -7,13 +7,10 @@
             <v-card color="white">
                 <br>
                 <v-flex xs6 offset-xs1>
-             <v-text-field v-model="title" label="信件標題" class="input-group--focused">:''</v-text-field>
+             <v-text-field v-model="title" label="信件標題" class="input-group--focused"></v-text-field>
                 </v-flex>
                 <v-flex xs6 offset-xs1>
-             <v-text-field v-model="sendEmail" label="寄件信箱" class="input-group--focused"></v-text-field>
-                </v-flex>
-                <v-flex xs6 offset-xs1>
-             <v-text-field v-model="recieveEmail" label="收件信箱" class="input-group--focused"></v-text-field>
+             <v-text-field v-model="recieveEmail" label="收件信箱" class="input-group--focused" hint="若有多筆請以,隔開"></v-text-field>
                 </v-flex>
              <v-flex offset-xs3>
             <v-btn @click="save" color="white" @click.native="dialog = false">儲存</v-btn>
@@ -137,7 +134,6 @@ export default {
     data(){
         return{
             title:'',
-            sendEmail:'',
             recieveEmail:'',
             search: '',
             selected: [],
@@ -168,10 +164,32 @@ export default {
     },
     methods:{
         save(){
-
+          let token = localStorage.getItem('token')
+          let data={
+          }
+          data.title = this.title
+          data.reciever = this.recieveEmail
+          console.log(data)
+          api.setMailSetting(token,'ask',data).then(res=>{
+            alert("設定成功")
+            window.location.reload()
+          }).catch(error=>{
+            alert(error)
+          })
         },
         deleteConfirm(){
-
+          var ids=[];
+            for(var i in this.selected){
+                ids[i]=this.selected[i].id;
+            }
+            let token = localStorage.getItem('token')
+            api.deleteAsk(token,ids).then(res=>{
+                alert('刪除成功')
+                window.location.reload();
+            }).catch(error=>{
+                alert(error)
+                window.location.reload();
+            })
         },
     },
     beforeMount(){
@@ -183,9 +201,14 @@ export default {
             for(var i=0;i< self.asks.length;i++){
                 self.asks[i].detail = JSON.parse(self.asks[i].detail)
             }
-            //console.log(self.asks)
         }).catch(error=>{
             alert(error)
+        })
+
+        api.getMailSetting(token,'ask').then(res=>{
+          self.title = res.data.setting.title
+          self.recieveEmail = res.data.setting.reciever
+        }).catch(error=>{
         })
     }
 }

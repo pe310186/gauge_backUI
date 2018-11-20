@@ -31,7 +31,8 @@ export default {
                 {genre:"詢價單",url:"ask"},
                 {genre:"訂單管理",url:"order"},
                 {genre:"會員一覽",url:"member"},
-                {genre:"會員認證",url:"membercheck"}
+                {genre:"會員認證",url:"membercheck"},
+                {genre:"電子報",url:"newsletter"}
             ]
         }
     },

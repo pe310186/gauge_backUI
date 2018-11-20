@@ -4,11 +4,8 @@
      <v-flex xs10 offset-xs1>
      <v-text-field v-model="title" label="Email標題" class="input-group--focused"></v-text-field>
     </v-flex>
-    <v-flex xs10 offset-xs1>
-     <v-text-field v-model="sendEmail" label="寄件信箱" class="input-group--focused"></v-text-field>
-    </v-flex>
      <v-flex xs10 offset-xs1>
-     <v-text-field v-model="recieveEamil" label="收件信箱" hint="若有多個信箱，請用,分隔" class="input-group--focused"></v-text-field>
+     <v-text-field v-model="recieveEmail" label="收件信箱" hint="若有多個信箱，請用,分隔" class="input-group--focused"></v-text-field>
     </v-flex>
     <v-flex offset-xs4>
         <v-btn @click="save">儲存</v-btn>
@@ -17,11 +14,10 @@
 </template>
 
 <script>
-
+import api from '../store/api'
 export default {
 data () {
       return {
-          sendEmail:'',
           recieveEmail:'',
           title:'',
 
@@ -29,8 +25,28 @@ data () {
     },
     methods:{
         save(){
-
+          let token = localStorage.getItem('token')
+          let data={
+          }
+          data.title = this.title
+          data.reciever = this.recieveEmail
+          console.log(data)
+          api.setMailSetting(token,'message',data).then(res=>{
+            alert("設定成功")
+            window.location.reload()
+          }).catch(error=>{
+            alert(error)
+          })
         }
+    },
+    beforeMount(){
+        let token  = localStorage.getItem('token')
+        let self = this
+        api.getMailSetting(token,'message').then(res=>{
+          self.title = res.data.setting.title
+          self.recieveEmail = res.data.setting.reciever
+        }).catch(error=>{
+        })
     }
 }
 </script>
