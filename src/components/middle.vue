@@ -104,7 +104,6 @@ export default {
         },
         Upload(genre, file)
         {
-            console.log(genre);
             let formdata = new FormData();
             formdata.append('title', genre);
             formdata.append('file', file);
