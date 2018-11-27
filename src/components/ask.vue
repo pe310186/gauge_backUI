@@ -102,9 +102,10 @@
     </template>
     <template slot="items" slot-scope="props">
       <td class="text-xs-center"> {{props.item.name}} </td>
-      <td class="text-xs-center"><v-card-media v-bind:src="props.item.picture"></v-card-media></td>
+      <td class="text-xs-center"><v-img contain max-height="100px" v-bind:src=props.item.picture></v-img></td>
       <td class="text-xs-center"><v-flex v-bind:key=n v-for="n in props.item.spec.length"><p v-if="props.item.spec[n-1]!== null">{{props.item.spec[n-1]}}:{{props.item.specOption[n-1]}}</p></v-flex></td>
       <td class="text-xs-center">{{props.item.amount}}</td>
+      <td class="text-xe-center">{{props.item.message}}</td>
     </template>
   </v-data-table>
                         </v-flex>
@@ -140,7 +141,8 @@ export default {
             detailHeaders:[{text: '商品名稱',align: 'center',sortable: false,value: 'name'},
             {text: '商品圖片',align: 'center',sortable: false,value: 'picture'},
             {text: '規格',align: 'center',sortable: false,value: 'detail'},
-            {text: '數量',align: 'center',sortable: false,value: 'number'},],
+            {text: '數量',align: 'center',sortable: false,value: 'number'},
+            {text: '備註',align: 'center',sortable: false,value: 'message'}],
         headers: [
           {
             text: '編號',
@@ -201,6 +203,7 @@ export default {
             for(var i=0;i< self.asks.length;i++){
                 self.asks[i].detail = JSON.parse(self.asks[i].detail)
             }
+            console.log(self.asks)
         }).catch(error=>{
             alert(error)
         })

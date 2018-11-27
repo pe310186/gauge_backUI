@@ -4,7 +4,7 @@
         <v-flex offset-xs1>
             <v-layout row>
             <p><font size="4">公司介紹</font><font siz3="2">(.pdf檔)</font></p>
-            <upload-button title="檔案上傳" name="introduction" accept=".pdf" :selectedCallback="Upload"></upload-button>
+            <upload-button title="檔案上傳" name="introduction" accept=".pdf" :selectedCallback="Upload" background-color="white"></upload-button>
             </v-layout>
             <br>
             <v-layout row>
