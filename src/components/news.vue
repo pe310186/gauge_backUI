@@ -194,7 +194,6 @@ data () {
       api.getArticleByType(5).then(res=>{
         this.news=res.data.articles
       }).catch(error=>{
-        alert(error)
       })
     }
 }

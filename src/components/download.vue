@@ -209,7 +209,6 @@ data () {
       api.getArticleByType(3).then(res=>{
         self.downloads = res.data.articles
       }).catch(error=>{
-        alert(error)
       })
     }
 }

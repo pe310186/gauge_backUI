@@ -195,7 +195,6 @@ data () {
       api.getArticleByType(10).then(res=>{
         self.brands = res.data.articles
       }).catch(error=>{
-        alert(error)
       })
     }
 }

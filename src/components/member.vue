@@ -301,7 +301,6 @@ data () {
           }
         }
       }).catch(error=>{
-        alert(error)
       })
     }
 }

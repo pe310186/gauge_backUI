@@ -171,7 +171,6 @@ export default {
           }
           data.title = this.title
           data.reciever = this.recieveEmail
-          console.log(data)
           api.setMailSetting(token,'ask',data).then(res=>{
             alert("設定成功")
             window.location.reload()
@@ -205,7 +204,6 @@ export default {
             }
             console.log(self.asks)
         }).catch(error=>{
-            alert(error)
         })
 
         api.getMailSetting(token,'ask').then(res=>{

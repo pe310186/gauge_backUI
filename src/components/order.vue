@@ -389,7 +389,6 @@ data () {
         }
         self.orders = data
       }).catch(error=>{
-        alert(error)
       })
 
 
@@ -409,7 +408,6 @@ data () {
         }
         self.accountItems = arr;
       }).catch(error=>{
-        alert(error)
       })
     }
 }

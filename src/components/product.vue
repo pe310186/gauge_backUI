@@ -436,7 +436,6 @@ data () {
                 }
             }
         }).catch(error=>{
-            alert(error)
             window.location.reload();
         })
     }

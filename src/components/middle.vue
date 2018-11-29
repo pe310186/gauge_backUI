@@ -124,7 +124,6 @@ export default {
             console.log(res);
             self.about = res.data.article.context;
         }).catch(error=>{
-            alert(error);
         })
     }
 }

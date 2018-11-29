@@ -128,9 +128,6 @@ data () {
                     '企業經營管理連結',
                     '關聯公協會'],
         relations: [
-          {id:'1',title:'123',type:'關係網頁連結',date:'5678'},
-          {id:'2',title:'123143',type:'友好網頁連結',date:'4567'},
-          {id:'3',title:'gh324',type:'工業開發科技園區',date:'456'}
         ],
         relation:[
             {
@@ -210,7 +207,6 @@ data () {
       api.getArticleByType(9).then(res=>{
         self.relations = res.data.articles;
       }).catch(error=>{
-        alert(error)
       })
     }
 }

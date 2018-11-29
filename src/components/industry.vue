@@ -205,7 +205,6 @@ data () {
       api.getArticleByType(4).then(res=>{
         this.industries=res.data.articles
       }).catch(error=>{
-        alert(error)
       })
     }
 }

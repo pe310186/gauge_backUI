@@ -199,7 +199,6 @@ data () {
       api.getArticleByType(6).then(res=>{
         self.dms = res.data.articles
       }).catch(error=>{
-        alert(error)
       })
     }
 }

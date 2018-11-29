@@ -213,7 +213,6 @@ data () {
       api.getArticleByType(7).then(res=>{
         this.technologies=res.data.articles
       }).catch(error=>{
-        alert(error)
       })
     }
 }

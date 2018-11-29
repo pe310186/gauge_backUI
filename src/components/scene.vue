@@ -131,9 +131,6 @@ data () {
         ],
         items:['管路/設備儀表照片','影片','文字圖案'],
         scenes: [
-          {id:'1',title:'123',type:'管路/設備儀表照片',date:'5678'},
-          {id:'2',title:'123143',type:'影片',date:'4567'},
-          {id:'3',title:'gh324',type:'文字圖案',date:'456'}
         ],
         scene:[
             {
@@ -231,16 +228,7 @@ data () {
       let self = this
       api.getArticleByType(8).then(res=>{
         this.scenes = res.data.articles
-        // for(var i in this.scenes){
-        //   //console.log(this.scenes[i]['date'])
-        //   var d = this.scenes[i]['date'].replace('T',' ')
-        //   d = d.split(' ')
-        //   console.log(d[0])
-        //   this.scenes[i]['date'] = d[0]
-        //   //console.log(this.scenes[i]['date'])
-        // }
       }).catch(error=>{
-        alert(error)
       })
     }
 }

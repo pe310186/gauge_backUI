@@ -129,7 +129,6 @@ data () {
       api.getAllApplyAccount(token).then(res=>{
         self.members = res.data.accounts;
       }).catch(error=>{
-        alert(error)
       })
     }
 }
