@@ -24,7 +24,7 @@
                 </v-layout>
                     </v-flex>
                     <v-flex xs4 offset-xs1>
-                <v-card height="250px"></v-card>
+                <v-img v-bind:src=product.picture contain max-height="200px"></v-img>
                     </v-flex>
                 </v-layout>
              <v-layout column>
@@ -118,7 +118,7 @@
                     </v-layout>
                     </v-flex>
                     <v-flex xs4 offset-xs1>
-                    <v-card height="250px"></v-card>
+                    <v-img :src="product[0].picture" contain max-height="200px"></v-img>
                     </v-flex>
                 </v-layout>
             <v-layout column>
@@ -257,7 +257,7 @@ data () {
                 spec:[],
                 specOption:[],
                 visible:'',
-                picture: null,
+                picture: '',
                 introduction:null,
                 download:null,
             },
@@ -273,7 +273,7 @@ data () {
                 }
                 else if(i=='picture' || i == 'introduction' || i=='download')
                 {
-                    this.product[0][i]=null;
+                    this.product[0][i]='';
                 }
                 else if(i=='visible')
                 {
@@ -320,7 +320,7 @@ data () {
                 }
                 else if(i=='picture' || i == 'introduction' || i=='download')
                 {
-                    this.product[0][i]=null;
+                    this.product[0][i]='';
                 }
                 else if(i=='visible')
                 {
@@ -399,7 +399,7 @@ data () {
         },
         Upload(genre, file)
         {
-            this.product[0][genre] = file
+            this.product[0][genre] = file;
         }
     },
     beforeMount()
