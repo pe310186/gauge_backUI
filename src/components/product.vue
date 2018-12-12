@@ -238,11 +238,11 @@ data () {
         spec:'',
         specOption:'',
         headers: [
-          { text: '編號',sortable:false,value:'id'},
+          { text: '編號',sortable:true,value:'id'},
           { text: '產品名稱',align: 'left',sortable: false, value: 'name'},
           { text: '產品類別', value: 'type', sortable: false, },
           {text:'狀態',value:'visible', sortable:false},
-          { text: '修改日期', value: 'date', sortable: false, }
+          { text: '修改日期', value: 'date', sortable: true, }
         ],
         products: [//商品列表
         ],

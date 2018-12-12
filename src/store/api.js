@@ -1,8 +1,8 @@
 import axios from 'axios'
 
 let client = axios.create({
-    //baseURL:   'http://localhost:3000',
-    baseURL: 'http://210.61.46.101:8787',
+    baseURL:   'http://localhost:3000',
+    //baseURL: 'http://210.61.46.101:8787',
     // timeout: 60000
 })
 
