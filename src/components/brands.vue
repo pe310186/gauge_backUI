@@ -193,7 +193,7 @@ data () {
     beforeMount(){
       let self = this;
       api.getArticleByType(10).then(res=>{
-        self.brands = res.data.articles
+        self.brands = res.data.articles.reverse()
       }).catch(error=>{
       })
     }

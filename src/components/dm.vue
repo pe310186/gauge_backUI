@@ -197,7 +197,7 @@ data () {
     beforeMount(){
       let self = this;
       api.getArticleByType(6).then(res=>{
-        self.dms = res.data.articles
+        self.dms = res.data.articles.reverse()
       }).catch(error=>{
       })
     }

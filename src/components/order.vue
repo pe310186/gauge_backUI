@@ -364,7 +364,6 @@ data () {
       let token = localStorage.getItem('token')
       let data=[];
       api.getAllOrder(token).then(res=>{
-        console.log(res)
         for(var i=0;i<res.data.orders.length;i++){
             let t = {
             account: ""
@@ -387,7 +386,7 @@ data () {
           t.id = res.data.orders[i].id
           data.push(t)
         }
-        self.orders = data
+        self.orders = data.reverse()
       }).catch(error=>{
       })
 

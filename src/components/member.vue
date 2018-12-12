@@ -281,7 +281,6 @@ data () {
       let token = localStorage.getItem('token')
       let self = this
       api.getAllAccount(token).then(res=>{
-        console.log(res)
         self.members = res.data.accounts;
         for(var i in self.members){
           if(self.members[i].sex == 1){

@@ -205,7 +205,7 @@ data () {
     beforeMount(){
       let self=this;
       api.getArticleByType(9).then(res=>{
-        self.relations = res.data.articles;
+        self.relations = res.data.articles.reverse();
       }).catch(error=>{
       })
     }

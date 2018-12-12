@@ -406,7 +406,7 @@ data () {
     {
         let self = this
         api.getAllProduct().then(res=>{
-            self.products = res.data.products;
+            self.products = res.data.products.reverse();
             for(var i in self.products){
                 var d = self.products[i].spec;
                 d = d.split(',')

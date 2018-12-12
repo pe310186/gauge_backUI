@@ -198,11 +198,10 @@ export default {
         let token = localStorage.getItem('token')
         api.getAsk(token).then(res=>{
             console.log(res)
-            self.asks = res.data.inquirys
+            self.asks = res.data.inquirys.reverse()
             for(var i=0;i< self.asks.length;i++){
                 self.asks[i].detail = JSON.parse(self.asks[i].detail)
             }
-            console.log(self.asks)
         }).catch(error=>{
         })
 

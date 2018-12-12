@@ -121,7 +121,6 @@ export default {
     {
         let self = this
         api.getArticle(15).then(res=>{
-            console.log(res);
             self.about = res.data.article.context;
         }).catch(error=>{
         })

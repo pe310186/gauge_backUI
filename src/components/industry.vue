@@ -203,7 +203,7 @@ data () {
     beforeMount(){
       let self = this
       api.getArticleByType(4).then(res=>{
-        this.industries=res.data.articles
+        this.industries=res.data.articles.reverse()
       }).catch(error=>{
       })
     }

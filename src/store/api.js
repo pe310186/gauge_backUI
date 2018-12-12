@@ -1,7 +1,7 @@
 import axios from 'axios'
 
 let client = axios.create({
-    // baseURL:   'http://localhost:3000',
+    //baseURL:   'http://localhost:3000',
     baseURL: 'http://210.61.46.101:8787',
     // timeout: 60000
 })
@@ -181,5 +181,14 @@ export default {
     },
     sendNewsletter(token,type,data){
         return client.post('/newsletter/'+type,data,{headers:{"Auth":token}})
-    }
+    },
+    createNewsletter(data){
+        return client.post('/newsletter',data)
+    },
+    getNewsletter(token){
+        return client.get('/newsletter/')
+    },
+    newsletterUpdate:function(token,id,data){
+        return client.put('/newsletter/'+ id,data,{headers:{'Auth':token}})
+    },
 }
