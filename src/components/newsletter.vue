@@ -53,6 +53,7 @@
           <v-text-field v-model="search" label="搜尋" class="input-group--focused"></v-text-field>
             </v-flex>
             <v-btn small><v-icon>search</v-icon></v-btn>
+            <v-btn small @click="selectAll()">全選</v-btn>
         </v-layout>
     <v-data-table
     :headers="headers"
@@ -193,9 +194,9 @@ export default {
             data.title = this.title
             data.recieveEmail = ""
             data.message = this.message
-            for(var i=0;i<this.members.length;i++){
-                data.recieveEmail += this.members[i].mail
-                if(i != this.members.length-1){
+            for(var i=0;i<this.selected.length;i++){
+                data.recieveEmail += this.selected[i].mail
+                if(i != this.selected.length-1){
                     data.recieveEmail += ","
                 }
             }
@@ -216,6 +217,12 @@ export default {
                     alert('發送失敗')
                     window.location.reload();
                 })
+            }
+        },
+        selectAll(){
+            this.selected=[]
+            for(var i in this.members){
+                this.selected.push(this.members[i])
             }
         }
     },
