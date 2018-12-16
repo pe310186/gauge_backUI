@@ -95,6 +95,7 @@
       </td>
       <td>{{ props.item.id }}</td>
       <td >{{ props.item.title }}</td>
+      <td>{{props.item.initDate}}</td>
       <td >{{ props.item.date }}</td>
     </template>
   </v-data-table>
@@ -117,7 +118,8 @@ data () {
             value: 'id'
           },
           { text: '型錄名稱', value: 'title' ,sortable:false},
-          { text: '修改日期', value: 'date' ,sortable:false},
+          {text:'上傳日期',value:'initDate',sortable:true},
+          { text: '修改日期', value: 'date' ,sortable:true},
         ],
         downloads: [
         ],

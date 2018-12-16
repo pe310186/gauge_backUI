@@ -211,7 +211,8 @@
       <td>{{props.item.id}}</td>
       <td>{{ props.item.name }}</td>
       <td >{{ props.item.type }}</td>
-      <td> {{props.item.visible}} </td>
+      <td>{{props.item.visible}}</td>
+      <td>{{props.item.initDate}}</td>
       <td >{{ props.item.date }}</td>
     </template>
   </v-data-table>
@@ -242,6 +243,7 @@ data () {
           { text: '產品名稱',align: 'left',sortable: false, value: 'name'},
           { text: '產品類別', value: 'type', sortable: false, },
           {text:'狀態',value:'visible', sortable:false},
+          {text:'上傳日期',value:'initDate',sortable:true},
           { text: '修改日期', value: 'date', sortable: true, }
         ],
         products: [//商品列表
@@ -406,7 +408,7 @@ data () {
     {
         let self = this
         api.getAllProduct().then(res=>{
-            self.products = res.data.products.reverse();
+            self.products = res.data.products;
             for(var i in self.products){
                 var d = self.products[i].spec;
                 d = d.split(',')
