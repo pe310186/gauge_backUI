@@ -2,10 +2,10 @@
     <v-container>
         <v-card-text align="center"><b><font size="6">亞帝後台系統</font></b></v-card-text>
         <v-layout row="">
-            <v-flex xs2>
+            <v-flex>
                 <left></left>
             </v-flex>
-            <v-flex xs8>
+            <v-flex lg10 md10>
              <middle :path="path"></middle>
             </v-flex>
         </v-layout>
