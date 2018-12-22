@@ -191,4 +191,15 @@ export default {
     newsletterUpdate:function(token,id,data){
         return client.put('/newsletter/'+ id,data,{headers:{'Auth':token}})
     },
+    deleteNewsletter(token,ids){
+        let config = {
+            headers:{
+                'Auth': token,
+            },
+            data:{
+                'ids':ids
+            }
+        }
+        return client.delete('/newsletter',config)
+    }
 }

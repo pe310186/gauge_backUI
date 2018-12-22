@@ -1,68 +1,111 @@
 <template>
     <v-container>
         <v-card-text align="center"><font size="4"><b>電子報</b></font></v-card-text>
-        <v-layout row>
-            <v-dialog v-model="dialog" width="600"  color="#FFFFFF">
-            <v-btn  slot="activator" @click="create">新增</v-btn>
-            <v-card color="white">
+        <v-layout column>
+            <v-layout row>
+                <v-radio-group v-model="type" row>
+                    <v-radio label="內貿"  value="in" @click="selected=[],type='in'"></v-radio>
+                    <v-radio label="外貿" value="out" @click="selected=[],type='out'"></v-radio>
+                </v-radio-group>
+                <v-btn small @click="selectAll()">全選</v-btn>
+                <v-btn small @click="unselectAll()">取消全選</v-btn>
+            </v-layout>
+            <v-layout row>
+                <v-dialog v-model="dialog" width="600"  color="#FFFFFF">
+                <v-btn  slot="activator" @click="create">新增</v-btn>
+                <v-card color="white">
+                    <br>
+                    <v-flex xs6 offset-xs1>
+                        <v-text-field v-model="member.name" label="名稱" class="input-group--focused"></v-text-field>
+                    </v-flex>
+                    <v-flex xs6 offset-xs1>
+                        <v-text-field v-model="member.mail" label="E-mail" class="input-group--focused"></v-text-field>
+                    </v-flex>
                 <br>
-                <v-flex xs6 offset-xs1>
-                     <v-text-field v-model="member.name" label="名稱" class="input-group--focused"></v-text-field>
+                <v-flex offset-xs3>
+                <v-btn @click="createConfirm" color="white" @click.native="dialog = false">確認</v-btn>
                 </v-flex>
-                <v-flex xs6 offset-xs1>
-                    <v-text-field v-model="member.mail" label="E-mail" class="input-group--focused"></v-text-field>
+                <br>   
+                </v-card>
+                </v-dialog>
+            <v-dialog v-model="dialog3" width="300">
+                <v-btn slot="activator" v-if="selected.length!=0">刪除</v-btn>
+                <v-card color="white">
+                    <br>
+                    <v-flex offset-xs2>
+                    <font size="4">確認刪除已選擇項目?</font>
+                    </v-flex>
+                    <br>
+                    <v-flex offset-xs4>
+                    <v-btn @click.native="dialog3=false" @click="deleteConfirm">確認</v-btn>
+                    </v-flex>
+                    <br>
+                </v-card>
+                </v-dialog>
+                <v-dialog v-model="dialog2" width="600"  color="#FFFFFF">
+                <v-btn  slot="activator" @click="update" v-if="selected.length==1">修改</v-btn>
+                <v-card color="white">
+                    <br>
+                    <v-flex xs6 offset-xs1>
+                        <v-text-field v-model="member.name" label="名稱" class="input-group--focused"></v-text-field>
+                    </v-flex>
+                    <v-flex xs6 offset-xs1>
+                        <v-text-field v-model="member.mail" label="E-mail" class="input-group--focused"></v-text-field>
+                    </v-flex>
+                    <br>
+                    <v-flex offset-xs4>
+                        <v-btn @click="updateConfirm" color="white" @click.native="dialog2 = false">確認</v-btn>
+                    </v-flex>
+                </v-card>
+                </v-dialog>
+                <v-flex xs3 offset-xs2>
+            <v-text-field v-model="search" label="搜尋" class="input-group--focused"></v-text-field>
                 </v-flex>
-             <br>
-             <v-flex offset-xs3>
-            <v-btn @click="createConfirm" color="white" @click.native="dialog = false">確認</v-btn>
-             </v-flex>
-             <br>   
-            </v-card>
-            </v-dialog>
-           <v-dialog v-model="dialog3" width="300">
-            <v-btn slot="activator" v-if="selected.length!=0">刪除</v-btn>
-            <v-card color="white">
-                <br>
-                <v-flex offset-xs2>
-                <font size="4">確認刪除已選擇項目?</font>
-                </v-flex>
-                <br>
-                <v-flex offset-xs4>
-                <v-btn @click.native="dialog3=false" @click="deleteConfirm">確認</v-btn>
-                </v-flex>
-                <br>
-            </v-card>
-            </v-dialog>
-            <v-dialog v-model="dialog2" width="600"  color="#FFFFFF">
-            <v-btn  slot="activator" @click="update" v-if="selected.length==1">修改</v-btn>
-            <v-card color="white">
-                <br>
-                <v-flex xs6 offset-xs1>
-                     <v-text-field v-model="member.name" label="名稱" class="input-group--focused"></v-text-field>
-                </v-flex>
-                <v-flex xs6 offset-xs1>
-                    <v-text-field v-model="member.mail" label="E-mail" class="input-group--focused"></v-text-field>
-                </v-flex>
-                <br>
-                <v-flex offset-xs4>
-                    <v-btn @click="updateConfirm" color="white" @click.native="dialog2 = false">確認</v-btn>
-                </v-flex>
-            </v-card>
-            </v-dialog>
-            <v-flex xs3 offset-xs2>
-          <v-text-field v-model="search" label="搜尋" class="input-group--focused"></v-text-field>
-            </v-flex>
-            <v-btn small><v-icon>search</v-icon></v-btn>
-            <v-btn small @click="selectAll()">全選</v-btn>
+                <v-btn small><v-icon>search</v-icon></v-btn>
+            </v-layout>
         </v-layout>
     <v-data-table
     :headers="headers"
-    :items="members"
+    :items="in_members"
     :search="search"
     v-model="selected"
     select-all
     item-key="id"
     class="elevation-1"
+    v-if="type=='in'"
+  >
+    <template slot="headerCell" slot-scope="props">
+      <v-tooltip bottom>
+        <span slot="activator">
+          {{ props.header.text }}
+        </span>
+        <span>
+          {{ props.header.text }}
+        </span>
+      </v-tooltip>
+    </template>
+    <template slot="items" slot-scope="props">
+      <td>
+        <v-checkbox
+          v-model="props.selected"
+          primary
+          hide-details
+        ></v-checkbox>
+      </td>
+      <td> {{props.item.id}}</td>
+      <td >{{ props.item.name }}</td>
+      <td >{{ props.item.mail }}</td>
+    </template>
+  </v-data-table>
+  <v-data-table
+    :headers="headers"
+    :items="out_members"
+    :search="search"
+    v-model="selected"
+    select-all
+    item-key="id"
+    class="elevation-1"
+    v-else-if="type=='out'"
   >
     <template slot="headerCell" slot-scope="props">
       <v-tooltip bottom>
@@ -120,15 +163,18 @@ export default {
             { text: '名稱', value: 'name',sortable: false,},
             { text: 'E-mail', value: 'mail' ,sortable: false,},
             ],
-            members:[],
+            in_members:[],
+            out_members:[],
             member:{
                 id:'',
                 name:'',
                 mail:'',
+                type:'',
             },
             title:'',
             recieveEmail:'',
             message:'',
+            type:'in',
             switch1:'文字',
             dialog:false,
             dialog2:false,
@@ -138,13 +184,15 @@ export default {
     methods:{
         create(){
           this.member.name = '',
-          this.member.mail = ''
+          this.member.mail = '',
+          this.member.type= this.type
         },
         createConfirm(){
           let token = localStorage.getItem('token')
           let data = {
               name: this.member.name,
               mail: this.member.mail,
+              type: this.member.type,
           }
           console.log(data)
           api.createNewsletter(data).then(()=>{
@@ -179,7 +227,7 @@ export default {
                 ids[i]=this.selected[i].id;
             }
             let token = localStorage.getItem('token')
-            api.deleteArticle(token,ids).then(res=>{
+            api.deleteNewsletter(token,ids).then(res=>{
                 alert('刪除成功')
                 window.location.reload();
             }).catch(error=>{
@@ -221,14 +269,32 @@ export default {
         },
         selectAll(){
             this.selected=[]
-            for(var i in this.members){
-                this.selected.push(this.members[i])
+            if(this.type=='in'){
+                for(var i in this.in_members){
+                    this.selected.push(this.in_members[i])
+                }
             }
+            else if(this.type=='out'){
+                for(var i in this.out_members){
+                    this.selected.push(this.out_members[i])
+                }
+            }
+        },
+        unselectAll(){
+            this.selected=[]
         }
     },
     beforeMount(){
         let self = this
         api.getNewsletter().then(res=>{
+            for(var i in res.data.members){
+                if(res.data.members[i].type=='in'){
+                    self.in_members.push(res.data.members[i])
+                }
+                else if(res.data.members[i].type=='out'){
+                    self.out_members.push(res.data.members[i])
+                }
+            }
             self.members = res.data.members
         }).catch(error=>{
         })
