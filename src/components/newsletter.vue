@@ -72,6 +72,7 @@
     select-all
     item-key="id"
     class="elevation-1"
+    :pagination.sync="pagination"
     v-if="type=='in'"
   >
     <template slot="headerCell" slot-scope="props">
@@ -105,6 +106,7 @@
     select-all
     item-key="id"
     class="elevation-1"
+    :pagination.sync="pagination"
     v-else-if="type=='out'"
   >
     <template slot="headerCell" slot-scope="props">
@@ -158,6 +160,10 @@ export default {
         return{
             search: '',
             selected: [],
+            pagination: {
+            sortBy: 'name',
+            rowsPerPage: 10
+        },
             headers: [
             {text:'編號',value:'id',sortable:false},
             { text: '名稱', value: 'name',sortable: false,},

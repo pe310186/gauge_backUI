@@ -67,6 +67,7 @@
     :headers="headers"
     :items="industries"
     :search="search"
+    :pagination.sync="pagination"
     v-model="selected"
     item-key="id"
     select-all
@@ -107,6 +108,10 @@ data () {
       return {
         search: '',
         selected: [],
+        pagination: {
+            sortBy: 'name',
+            rowsPerPage: 10
+        },
         headers: [
           {
             text: '編號',

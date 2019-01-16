@@ -64,6 +64,7 @@
     v-model="selected"
     item-key="id"
     select-all
+    :pagination.sync="pagination"
     class="elevation-1"
   >
     <template slot="headerCell" slot-scope="props">
@@ -100,6 +101,10 @@ data () {
       return {
         search: '',
         selected: [],
+        pagination: {
+            sortBy: 'name',
+            rowsPerPage: 10
+        },
         headers: [
           {
             text: '編號',

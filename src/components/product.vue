@@ -188,6 +188,7 @@
     v-model="selected"
     item-key="id"
     select-all
+    :pagination.sync="pagination"
     class="elevation-1"
   >
     <template slot="headerCell" slot-scope="props">
@@ -232,7 +233,8 @@ data () {
         dialog4:false,//刪除確認
         dialog5:false,//規格選項(新增)
         pagination: {
-        sortBy: 'name'
+            sortBy: 'name',
+            rowsPerPage: 10
         },
         search: '',
         selected: [],

@@ -1,8 +1,8 @@
 <template>
     <v-container>
         <v-layout column="">
-            <v-flex v-bind:key=item.url v-for="item in toolbar">
-                 <v-btn  @click="changeRoute(item.url)">{{item.genre}}</v-btn>
+            <v-flex v-bind:key=item.url v-for="item in toolbar" >
+                 <v-btn  @click="changeRoute(item.url)" block>{{item.genre}}</v-btn>
             </v-flex>
         </v-layout>
     </v-container>
@@ -17,7 +17,7 @@ export default {
                 {genre:"首頁",url:"home"},
                 {genre:"關於亞帝",url:"about"},
                 {genre:"產品目錄",url:"product"},
-                {genre:"型錄下載",url:"download"},
+                {genre:"型錄總覽下載",url:"download"},
                 {genre:"應用產業",url:"industry"},
                 {genre:"最新消息",url:"news"},
                 {genre:"各期EDM",url:"dm"},

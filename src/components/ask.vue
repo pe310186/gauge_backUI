@@ -46,6 +46,7 @@
     v-model="selected"
     item-key="id"
     select-all
+    :pagination.sync="pagination"
     class="elevation-1"
   >
     <template slot="headerCell" slot-scope="props">
@@ -134,6 +135,10 @@ import api from '../store/api'
 export default {
     data(){
         return{
+          pagination: {
+            sortBy: 'name',
+            rowsPerPage: 10
+        },
             title:'',
             recieveEmail:'',
             search: '',

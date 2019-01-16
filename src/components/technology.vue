@@ -69,6 +69,7 @@
     :search="search"
     v-model="selected"
     item-key="id"
+    :pagination.sync="pagination"
     select-all
     class="elevation-1"
   >
@@ -106,6 +107,10 @@ data () {
       return {
         search: '',
         selected: [],
+        pagination: {
+            sortBy: 'name',
+            rowsPerPage: 10
+        },
         headers: [
           {
             text: '編號',

@@ -1,6 +1,6 @@
 <template>
 <v-container>
-    <v-card-text align="center"><font size="4"><b>型錄下載</b></font></v-card-text>
+    <v-card-text align="center"><font size="4"><b>型錄總覽下載</b></font></v-card-text>
     <v-layout row>
             <v-dialog v-model="dialog" width="600"  color="#FFFFFF">
             <v-btn  slot="activator" @click="create">新增</v-btn>
@@ -73,6 +73,7 @@
     v-model="selected"
     item-key="id"
     select-all
+    :pagination.sync="pagination"
     class="elevation-1"
   >
     <template slot="headerCell" slot-scope="props">
@@ -110,6 +111,10 @@ data () {
       return {
         search: '',
         selected: [],
+        pagination: {
+            sortBy: 'name',
+            rowsPerPage: 10
+        },
         headers: [
           {
             text: '編號',

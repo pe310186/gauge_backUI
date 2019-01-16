@@ -87,6 +87,7 @@
     v-model="selected"
     item-key="id"
     select-all
+    :pagination.sync="pagination"
     class="elevation-1"
   >
     <template slot="headerCell" slot-scope="props">
@@ -127,6 +128,10 @@ data () {
       return {
         search: '',
         selected: [],
+        pagination: {
+            sortBy: 'name',
+            rowsPerPage: 10
+        },
         name:'',
         headers: [
           {
@@ -192,10 +197,8 @@ data () {
               else{//員工
                 this.member[0][i]=2;
               }
-              console.log(this.member[0][i])
             }
           }
-          console.log(this.member[0])
           let token = localStorage.getItem('token');
           api.register(token,this.member[0]).then(res=>{
             console.log(res)
