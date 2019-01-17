@@ -380,6 +380,12 @@ data () {
           let S = res.data.orders[i].specOption  
           s = s.split(',')
           S = S.split(',')
+          if(s.length==1 && s[0]==''){
+              s = []
+          }
+          if(S.length==1 && S[0] == ''){
+              S = []
+          }
           t.spec = s
           t.specOption = S
           let d = res.data.orders[i].state;

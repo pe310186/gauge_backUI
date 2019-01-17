@@ -62,8 +62,8 @@
             </v-radio-group>
             <v-text-field v-model="member[0].birthday" label="生日" class="input-group--focused"></v-text-field>
             <v-text-field v-model="member[0].email" label="*e-mail" class="input-group--focused"></v-text-field>
-            <v-text-field v-model="member[0].phone" label="*連絡電話" class="input-group--focused"></v-text-field>
-            <v-text-field v-model="member[0].fax" label="*傳真" class="input-group--focused"></v-text-field>
+            <v-text-field v-model="member[0].phone" label="連絡電話" class="input-group--focused"></v-text-field>
+            <v-text-field v-model="member[0].fax" label="傳真" class="input-group--focused"></v-text-field>
             <v-text-field v-model="member[0].line" label="line" class="input-group--focused"></v-text-field>
             <v-text-field v-model="member[0].skype" label="skype" class="input-group--focused"></v-text-field>
             <v-text-field v-model="member[0].qq" label="qq" class="input-group--focused"></v-text-field>
@@ -170,7 +170,7 @@ data () {
         },
         createConfirm(){
           let list = ['name','sex','company','account','password','birthday','email','phone','line','qq','fax','skype','level']
-          let checkList = ['name','sex','company','account','password','phone','fax','email']
+          let checkList = ['name','sex','company','account','password','email']
           for(var i of checkList){
             if(this.member[0][i] == ''){
               alert('有必填選項未填')
@@ -222,7 +222,7 @@ data () {
         },
         updateConfirm(){
           let list = ['name','sex','company','account','password','birthday','email','phone','line','qq','fax','skype']
-          let checkList = ['name','sex','company','account','phone','fax']
+          let checkList = ['name','sex','company','account','email']
           for(var i of checkList){
             if(this.member[0][i] == ''){
               alert('有必填選項未填')
