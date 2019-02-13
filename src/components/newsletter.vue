@@ -165,7 +165,7 @@ export default {
             rowsPerPage: 10
         },
             headers: [
-            {text:'編號',value:'id',sortable:false},
+            {text:'編號',value:'id',sortable:true},
             { text: '名稱', value: 'name',sortable: false,},
             { text: 'E-mail', value: 'mail' ,sortable: false,},
             ],
