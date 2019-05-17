@@ -315,13 +315,13 @@ data () {
                     formdata.append(i,this.product[0][i]);
                 }
             }
-            // api.productCreate(token,formdata).then(res=>{
-            //     alert('新增成功')
-            //     window.location.reload();
-            // }).catch(error=>{
-            //     alert(error)
-            //     window.location.reload();
-            // })   
+            api.productCreate(token,formdata).then(res=>{
+                alert('新增成功')
+                window.location.reload();
+            }).catch(error=>{
+                alert(error)
+                window.location.reload();
+            })   
         },
         update(){
              console.log(this.selected)
