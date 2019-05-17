@@ -306,10 +306,8 @@ data () {
                     for(var j in this.mapTable){
                         if(this.product[0][i] == this.mapTable[j].name){
                             formdata.append(i,this.mapTable[j].id);
-                        }
-                            
-                    }
-                    
+                        }   
+                     }
                 }
                 else{
                     formdata.append(i,this.product[0][i]);
