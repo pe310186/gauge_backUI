@@ -251,7 +251,8 @@ data () {
         products: [//商品列表
         ],
         type:'',
-        items:['指針式壓力錶','類比輸出壓力開關','壓力傳感(送)器','智能型變送器','數位式壓力錶','指針式溫度表','機械式溫度開關','數位溫度表','TC熱電偶','RTD熱電阻','玻璃管溫度計','隔膜','校驗儀器','配件','衍生-F.R.L1~3點組合','衍生-閥類','衍生-液位','衍生-流量','衍生-調整器','衍生-荷重傳感器及變送器','溫度傳感(送)器','機械式壓力開關'],
+        items:['指針式壓力錶','類比輸出壓力開關','壓力傳感(送)器','機械式壓力開關','智能型變送器','數位式壓力錶','指針式溫度表','機械式溫度開關','溫度傳感(送)器','數位溫度表','TC熱電偶','RTD熱電阻','玻璃管溫度計','隔膜','校驗儀器','配件','衍生-F.R.L1~3點組合','衍生-閥類','衍生-液位','衍生-流量','衍生-調整器','衍生-荷重傳感器及變送器'],
+        mapTable:[{name:'指針式壓力錶',id:'1'},{name:'類比輸出壓力開關',id:'2'},{name:'壓力傳感(送)器',id:'3'},{name:'智能型變送器',id:'4'},{name:'數位式壓力錶',id:'5'},{name:'指針式溫度表',id:'6'},{name:'機械式溫度開關',id:'7'},{name:'數位溫度表',id:'8'},{name:'TC熱電偶',id:'9'},{name:'RTD熱電阻',id:'10'},{name:'玻璃管溫度計',id:'11'},{name:'隔膜',id:'12'},{name:'校驗儀器',id:'13'},{name:'配件',id:'14'},{name:'衍生-F.R.L1~3點組合',id:'15'},{name:'衍生-閥類',id:'16'},{name:'衍生-液位',id:'17'},{name:'衍生-流量',id:'18'},{name:'衍生-調整器',id:'19'},{name:'衍生-荷重傳感器及變送器',id:'20'},{name:'溫度傳感(送)器',id:'21'},{name:'機械式壓力開關',id:'22'}],
         product :[ 
             {//新增或修改用
                 id:'',
@@ -302,19 +303,25 @@ data () {
                     }
                 }
                 else if(i=='type'){
-                    formdata.append(i,this.items.indexOf(this.product[0]['type'])+1);
+                    for(var j in this.mapTable){
+                        if(this.product[0][i] == this.mapTable[j].name){
+                            formdata.append(i,this.mapTable[j].id);
+                        }
+                            
+                    }
+                    
                 }
                 else{
                     formdata.append(i,this.product[0][i]);
                 }
             }
-            api.productCreate(token,formdata).then(res=>{
-                alert('新增成功')
-                window.location.reload();
-            }).catch(error=>{
-                alert(error)
-                window.location.reload();
-            })   
+            // api.productCreate(token,formdata).then(res=>{
+            //     alert('新增成功')
+            //     window.location.reload();
+            // }).catch(error=>{
+            //     alert(error)
+            //     window.location.reload();
+            // })   
         },
         update(){
              console.log(this.selected)
