@@ -363,7 +363,11 @@ data () {
                     }
                 }
                 else if(i=='type'){
-                    formdata.append(i,this.items.indexOf(this.product[0]['type'])+1);
+                    for(var j in this.mapTable){
+                        if(this.product[0][i] == this.mapTable[j].name){
+                            formdata.append(i,this.mapTable[j].id);
+                        }   
+                     }
                 }
                 else{
                     formdata.append(i,this.product[0][i]);
@@ -433,7 +437,7 @@ data () {
                 else{
                     self.products[i]['specOption'] = D
                 }
-                self.products[i]['type'] = self.items[self.products[i]['type']-1]
+                self.products[i]['type'] = self.mapTable[self.products[i]['type']-1].name
                 var T = this.products[i]['date'].replace('T',' ')
                 T = T.split(' ')
                 this.products[i]['date'] = T[0]
