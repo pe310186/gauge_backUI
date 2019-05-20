@@ -374,9 +374,7 @@ data () {
                 }
             }
              api.productUpdate(token,this.product[0]['id'],formdata).then(res=>{
-                //console.log(this.selected[0]);
                 alert('更新成功')
-                window.location.reload();
             }).catch(error=>{
                 alert(error)
                 window.location.reload();
